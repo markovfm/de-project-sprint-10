@@ -4,16 +4,16 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from flask import Flask
 
 from app_config import AppConfig
-from cdm_loader.cdm_message_processor_job import CdmMessageProcessor
-
+from stg_loader.stg_message_processor_job.py import StgMessageProcessor
 
 app = Flask(__name__)
 
-config = AppConfig()
 
-
+# Заводим endpoint для проверки, поднялся ли сервис.
+# Обратиться к нему можно будет GET-запросом по адресу localhost:5000/health.
+# Если в ответе будет healthy - сервис поднялся и работает.
 @app.get('/health')
-def hello_world():
+def health():
     return 'healthy'
 
 
@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
     # Инициализируем процессор сообщений.
     # Пока он пустой. Нужен для того, чтобы потом в нем писать логику обработки сообщений из Kafka.
-    proc =CdmMessageProcessor(
+    proc = StgMessageProcessor(
         consumer=config.KAFKA_CONSUMER,
         producer=config.KAFKA_PRODUCER,
         redis=config.REDIS,
