@@ -1,0 +1,4 @@
+Проверьте пожалуйста еще  раз 
+https://github.com/markovfm/de-project-sprint-10/tree/main/solution/service_cdm/src/cdm_loader/repository
+Тут заполнен файл, аналогично DDS 
+Если какие то проблемы с доступом или чтением дайте знать
